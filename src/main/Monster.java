@@ -1,12 +1,11 @@
 package main;
 
-public class NPC {
+public class Monster {
 	String name;
 	Coordinates coordinates;
-	Quest quest;
-	String dialogue;
 	
-	public NPC(String name, Coordinates coordinates) {
+	
+	public Monster(String name, Coordinates coordinates) {
 		this.name = name;
 		this.coordinates = coordinates;
 	}

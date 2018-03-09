@@ -33,6 +33,7 @@ public class MapSerializer {
 	
 	private static TerrainType terrainMapper(char c) {
 		switch(c) {
+			case 'b':  return TerrainType.BORDER;
 			case 'm':  return TerrainType.MOUNTAIN;
 			case 'w':  return TerrainType.WATER;
 			case 'c':  return TerrainType.CAVE;

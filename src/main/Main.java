@@ -1,7 +1,9 @@
 package main;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -20,24 +22,31 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		Map map = MapSerializer.deserializeMap("/src/maps/map.txt");
 		Character character = new Character("Luis Ignacio", new Coordinates(20,10));
-		character.setCoordinates(20, 10);
+		NPC npc1 = new NPC("Johnny", new Coordinates(19,11));
+		Monster monster1 = new Monster("Dragon", new Coordinates(17,12));
+		NPC[] npcs = new NPC[]{npc1};
+		Monster[] monsters = new Monster[]{monster1};
 		
-		Scanner reader = new Scanner(System.in);  
+		Prerender prerender = new Prerender(map, character, npcs, monsters);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
-		char c = 's';
-		while(c != 'q') {
-			if(c=='w')character.moveUp();
-			if(c=='a')character.moveLeft();
-			if(c=='s')character.moveDown();
-			if(c=='d')character.moveRight();
-			Prerender prerender = new Prerender(map, character);
+		String c = "start";
+		while(true) {
+			
+			if(c.equals("w"))character.moveUp();
+			if(c.equals("a"))character.moveLeft();
+			if(c.equals("s"))character.moveDown();
+			if(c.equals("d"))character.moveRight();
+			prerender.update();
 			Renderer.renderPrerender(prerender);
+			
 			System.out.println("Enter a command: ");
-			c = reader.next().charAt(0); 
+			c = reader.readLine();
+			
 			Main.clearScreen();
+			
+			
 		}
-		reader.close();
-		
 
 	}
 	public static void clearScreen() {  

@@ -17,15 +17,14 @@ public class Tile {
 				return ItemType.LIGHTER;
 			case TREES:
 				return ItemType.MACHETE;
-			case LAND:
-				return null;
 			default:
-				throw new IllegalArgumentException();
+				throw null;
 		}
 	}
 }
 
 enum TerrainType {
+	BORDER, //b
 	MOUNTAIN, //m
 	CAVE, //c
 	LAND, //l
