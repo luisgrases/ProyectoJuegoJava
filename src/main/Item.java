@@ -3,6 +3,10 @@ package main;
 public class Item {
 	ItemType type;
 	Coordinates coordinates;
+	
+	public Item(ItemType type) {
+		this.type = type;
+	}
 }
 
 enum ItemType {

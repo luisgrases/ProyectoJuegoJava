@@ -1,6 +1,6 @@
 package main;
 
-public class Monster {
+public class Monster implements Coordinateable{
 	String name;
 	Coordinates coordinates;
 	
@@ -8,5 +8,9 @@ public class Monster {
 	public Monster(String name, Coordinates coordinates) {
 		this.name = name;
 		this.coordinates = coordinates;
+	}
+	
+	public Coordinates getCoordinates() {
+		return this.coordinates;
 	}
 }

@@ -28,10 +28,10 @@ public class MapSerializer {
 	}
 	
 	private static Tile deserializeTile(char c) {
-		return new Tile(MapSerializer.terrainMapper(c));
+		return new Tile(MapSerializer.mapTerrainToChar(c));
 	}
 	
-	private static TerrainType terrainMapper(char c) {
+	private static TerrainType mapTerrainToChar(char c) {
 		switch(c) {
 			case 'b':  return TerrainType.BORDER;
 			case 'm':  return TerrainType.MOUNTAIN;

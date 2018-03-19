@@ -21,13 +21,18 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		Map map = MapSerializer.deserializeMap("/src/maps/map.txt");
-		Character character = new Character("Luis Ignacio", new Coordinates(20,10));
-		NPC npc1 = new NPC("Johnny", new Coordinates(19,11));
-		Monster monster1 = new Monster("Dragon", new Coordinates(17,12));
-		NPC[] npcs = new NPC[]{npc1};
-		Monster[] monsters = new Monster[]{monster1};
+		Character character = new Character("Luis Ignacio", new Coordinates(14,10), map);
+		NPC npc1 = new NPC("Johnny", new Coordinates(12,11), "Hola aventurero!");
+		Monster monster1 = new Monster("Dragon", new Coordinates(11,12));
+		Quest npc1Quest = new Quest("Cruza el bosque y mata al dragon del otro lado, luego traeme su cabeza", new Item(ItemType.MACHETE));
+		npc1.quest = npc1Quest;
 		
-		Prerender prerender = new Prerender(map, character, npcs, monsters);
+		
+		Coordinateable[] coordinateables = new Coordinateable[] {monster1, npc1};
+		map.insertCoordinateables(coordinateables);
+		
+		Prerenderer prerenderer = new Prerenderer(map, character);
+		prerenderer.load();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
 		String c = "start";
@@ -37,8 +42,9 @@ public class Main {
 			if(c.equals("a"))character.moveLeft();
 			if(c.equals("s"))character.moveDown();
 			if(c.equals("d"))character.moveRight();
-			prerender.update();
-			Renderer.renderPrerender(prerender);
+			
+			prerenderer.update();
+			Renderer.renderPrerender(prerenderer);
 			
 			System.out.println("Enter a command: ");
 			c = reader.readLine();
