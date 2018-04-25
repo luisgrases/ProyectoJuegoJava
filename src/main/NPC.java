@@ -25,5 +25,11 @@ public class NPC implements Coordinateable {
 	public void talkToCharacter(Character character) {
 		System.out.println(this.dialogue);
 		if(!this.quest.completed && character.quest == null) this.giveQuestToCharacter(character);
+		if(!this.quest.completed && character.canCompleteQuest()) this.completeQuest(character);
+	}
+	
+	public void completeQuest(Character character) {
+		this.quest.completed = true;
+		System.out.println(this.quest.completionDialogue);
 	}
 }

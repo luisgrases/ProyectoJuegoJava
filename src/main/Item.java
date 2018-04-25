@@ -16,5 +16,6 @@ enum ItemType {
 	LIGHTER,
 	POTION,
 	SWORD,
-	BOOTS;
+	BOOTS,
+	DRAGON_HEAD
 }

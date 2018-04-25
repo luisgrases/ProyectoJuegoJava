@@ -23,8 +23,8 @@ public class Main {
 		Map map = MapSerializer.deserializeMap("/src/maps/map.txt");
 		Character character = new Character("Luis Ignacio", new Coordinates(14,10), map);
 		NPC npc1 = new NPC("Johnny", new Coordinates(12,11), "Hola aventurero!");
-		Monster monster1 = new Monster("Dragon", new Coordinates(11,12));
-		Quest npc1Quest = new Quest("Cruza el bosque y mata al dragon del otro lado, luego traeme su cabeza", new Item(ItemType.MACHETE));
+		Monster monster1 = new Monster("Dragon", new Coordinates(11,12), ItemType.DRAGON_HEAD);
+		Quest npc1Quest = new Quest("Cruza el bosque y mata al dragon del otro lado, luego traeme su cabeza.", new Item(ItemType.MACHETE), ItemType.DRAGON_HEAD, "Gracias! Esta cabeza de dragón me sera un buen adorno para mi árbol de navidad.");
 		npc1.quest = npc1Quest;
 		
 		

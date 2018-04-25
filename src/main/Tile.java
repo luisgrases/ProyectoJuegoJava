@@ -31,14 +31,14 @@ public class Tile {
 		return this.coordinatable instanceof NPC;
 	}
 	
-	public boolean hasMonster() {
-		return this.coordinatable instanceof Monster;
+	public boolean hasAliveMonster() {
+		return this.coordinatable instanceof Monster && !((Monster) this.coordinatable).isDead;
 	}
 	
 	public char mapToChar() {
 		if(this.coordinatable != null) {
 			if(this.hasNPC()) return 'N';
-			if(this.hasMonster()) return 'M';
+			if(this.hasAliveMonster()) return 'M';
 			throw new IllegalArgumentException();
 		} else {
 			switch (this.terrainType) {

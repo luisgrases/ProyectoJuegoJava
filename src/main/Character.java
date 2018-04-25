@@ -22,10 +22,25 @@ public class Character implements Coordinateable {
 			this.coordinates = new Coordinates(x, y);
 		}
 		if(map.tiles[y][x].hasNPC()) this.talkToNPC((NPC) map.tiles[y][x].coordinatable);
+		if(map.tiles[y][x].hasAliveMonster()) this.fightMonster((Monster) map.tiles[y][x].coordinatable);
 	}
 	
 	public void talkToNPC(NPC npc) {
 		npc.talkToCharacter(this);
+	}
+	
+	public void fightMonster(Monster monster) {
+		 monster.die();
+		 this.items.add(getMonsterLoot(monster));
+	}
+	
+	public Item getMonsterLoot(Monster monster) {
+		System.out.println("Has obtenido " + monster.loot);
+		return new Item(monster.loot);
+	}
+	
+	public boolean canCompleteQuest() {
+		return (this.quest != null) && this.hasItem(this.quest.itemNeeded);
 	}
 	
 	public void setQuest(Quest quest) {
